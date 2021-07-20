@@ -1,17 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace GradeBook
+namespace delegateandevent
 {
     class Program
     {
         static void Main(string[] args)
-        {   
-            var st =new Student("sahil"); //creating a new object
-            st.AddGrade(56.3);
-            st.AddGrade(78.2);
+        {
+           var video=new video(){Title="video 1"};
+           var videoEncoder=new VideoEncoder();  //publisher
+            var mailService =new MailService();  //subscriber
 
-            Console.WriteLine($"The average marks of ${st.name} is ${st.getAverage()}");
+            videoEncoder.VideoEncoded+=mailService.xyz;
+           videoEncoder.Encode(video);
+
+        } 
+    }
+
+    public class MailService{
+
+        public void xyz(object source,EventArgs e){
+            System.Console.WriteLine("sending an email");
         }
     }
 }
